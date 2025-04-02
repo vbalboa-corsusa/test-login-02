@@ -2,7 +2,48 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<html>
+<head>
+    <title>Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper fadeInDown">
+        <h2>Inicio de sesión Bitrix</h2>
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+            </div>
+
+            <!-- Login Form -->
+            <form method="post" action="@Url.Action("Login","Home")">
+                <label for="EMAIL">Ingrese su correo:</label>
+                <input type="email" id="email" class="form-control" name="email" placeholder="Ejemplo: pvercel@corsusa.com" required>
+                <label for="password">Ingrese su contraseña:</label>
+                <input type="password" id="password" class="form-control" name="password" required>
+                <input type="submit" class="form-control" value="Log In">
+                @*<button type="submit" class="btn btn-primary">Ingresar</button>*@
+            </form>
+
+            @if (ViewBag.Message != null)
+            {
+                <div class="alert alert-success mt-3">
+                    @ViewBag.Message
+                </div>
+            }
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <a class="underlineHover" href="#">Forgot Password?</a>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
