@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using test_login_02.Models;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq; //consulta, analisis y manipulacion de datos JSON. LINQ(Idioma Consulta Integrada)
+using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Authorization; //consulta, analisis y manipulacion de datos JSON. LINQ(Idioma Consulta Integrada)
 
 namespace test_login_02.Controllers
 {
@@ -14,6 +15,7 @@ namespace test_login_02.Controllers
         {
             return View(); //Retorno de la vista
         }
+
 
         [HttpPost]
         public async Task<ActionResult> Login(string email, string password)
@@ -32,7 +34,7 @@ namespace test_login_02.Controllers
                     if (jsonResponse["result"] != null)
                     {
                         var user = jsonResponse["result"];
-                        string userEmail = user["EMAIL"]?.ToString() ?? "Incorrecto"; //?? se usa para gestionar valores nulos
+                        string userEmail = user["EMAIL"]?.ToString() ?? "Incorrecto"; //?? para gestionar valores nulos
 
                         ViewBag.Message = $"Acceso correcto. Usuario: {userEmail}";
                     }
@@ -53,5 +55,7 @@ namespace test_login_02.Controllers
 
             return View("Index");
         }
+
+        
     }
 }
