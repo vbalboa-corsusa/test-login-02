@@ -20,11 +20,20 @@ namespace test_login_02.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(string email, string password)
         {
-            string url = "https://corsusaint.bitrix24.com/rest/5728/ooyssbe5leg0hl3t/user.current";
+            string accessToken = HttpContext.Session.GetString("access_token"); //Recuperar el token de acceso de la sesión
+
+            if (string.IsNullOrEmpty(accessToken)) //Método para verificar si el token de acceso es nulo o vacío
+            {
+                ViewBag.Message = "Token de acceso no disponible.";
+                return View("Index");
+            }
+
+            string apiUrl = "https://corsusaint.bitrix24.com/rest/5728/ooyssbe5leg0hl3t/user.current";
+            string urlWithToken = $"{apiUrl}?auth={accessToken}"; //URL de la API con el token de acceso
 
             try
             {
-                var response = await _client.GetAsync(url);
+                var response = await _client.GetAsync(apiUrl);
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync(); //Serializa contenido http en una cadena
