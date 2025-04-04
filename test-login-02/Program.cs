@@ -35,4 +35,9 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapControllerRoute(
+    name: "install",
+    pattern: "bitrix24/install",
+    defaults: new { controller = "OAuth", action = "install"});
+
 app.Run();

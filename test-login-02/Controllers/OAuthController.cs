@@ -12,8 +12,14 @@ namespace test_login_02.Controllers
 
         private string clienId = "5728"; //ID de cliente
         private string clientSecret = "ooyssbe5leg0hl3t"; //Secreto de cliente
-        private string redirectUri = "https://localhost:44300/oauth/callback"; //URL de redirección
+        private string redirectUri = "https://cc7d-38-187-9-209.ngrok-free.app/oauth/callback"; //URL de redirección
         // private string redirectUri = "https://corsusaint.bitrix24.com/rest/oauth/redirect.php"; //URL de redirección
+
+        public IActionResult Install()
+        {
+            ViewBag.Message = "Aplicación instalada correctamente"; //Mensaje de instalación
+            return View(); //Retorno de la vista
+        }
 
         public IActionResult Authorize()
         {
@@ -53,6 +59,7 @@ namespace test_login_02.Controllers
                     if (accessToken != null)
                     {
                         ViewBag.Message = "Acceso correcto, token " + accessToken;
+                        HttpContext.Session.SetString("access_token", accessToken); //Guardar el token de acceso en la sesión
                     }
                     else
                     {
