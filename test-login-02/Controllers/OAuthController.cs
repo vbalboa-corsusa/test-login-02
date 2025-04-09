@@ -12,7 +12,7 @@ namespace test_login_02.Controllers
 
         private string clienId = "5728"; //ID de cliente
         private string clientSecret = "ooyssbe5leg0hl3t"; //Secreto de cliente
-        private string redirectUri = "https://cc7d-38-187-9-209.ngrok-free.app/oauth/callback"; //URL de redirección
+        private string redirectUri = "https://cc7d-38-187-9-209.ngrok-free.app/oauth/callback"; //URL handler path
         // private string redirectUri = "https://corsusaint.bitrix24.com/rest/oauth/redirect.php"; //URL de redirección
 
         public IActionResult Install()
