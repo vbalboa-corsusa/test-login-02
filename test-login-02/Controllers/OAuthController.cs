@@ -3,27 +3,34 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using Microsoft.Extensions.Options;
 
 namespace test_login_02.Controllers
 {
     public class OAuthController : Controller
     {
-        private static readonly HttpClient _client = new HttpClient(); //Cliente http
+        private readonly HttpClient _client = new HttpClient(); //Cliente http
+        private readonly BitrixSettings _settings;
 
-        private string clienId = "5728"; //ID de cliente
-        private string clientSecret = "ooyssbe5leg0hl3t"; //Secreto de cliente
-        private string redirectUri = "https://cc7d-38-187-9-209.ngrok-free.app/oauth/callback"; //URL handler path
+        //private string ClientId = "5728"; //ID de cliente
+        //private string ClientSecret = "ooyssbe5leg0hl3t"; //Secreto de cliente
+        //private string RedirectUri = "https://cc7d-38-187-9-209.ngrok-free.app/oauth/callback"; //URL handler path
         // private string redirectUri = "https://corsusaint.bitrix24.com/rest/oauth/redirect.php"; //URL de redirección
 
-        public IActionResult Install()
+        public OAuthController(IOptions<BitrixSettings> settings)
         {
-            ViewBag.Message = "Aplicación instalada correctamente"; //Mensaje de instalación
-            return View(); //Retorno de la vista
+            _settings = settings.Value;
         }
+
+        //public IActionResult Install()
+        //{
+        //    ViewBag.Message = "Aplicación instalada correctamente"; //Mensaje de instalación
+        //    return View(); //Retorno de la vista
+        //}
 
         public IActionResult Authorize()
         {
-            string authorizationUrl = $"https://corsusaint.bitrix24.com/oauth/authorize/?client_id={clienId}&response_type=code&redirect_uri={redirectUri}"; //URL de autorización
+            string authorizationUrl = $"https://corsusaint.bitrix24.com/oauth/authorize/?client_id={_settings.ClientId}&response_type=code&redirect_uri={_settings.RedirectUri}"; //URL de autorización
             return Redirect(authorizationUrl); //Redirigir a la URL de autorización
         }
 
@@ -40,10 +47,10 @@ namespace test_login_02.Controllers
             var requestBody = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("grant_type", "authorization_code"),
-                new KeyValuePair<string, string>("client_id", clienId),
-                new KeyValuePair<string, string>("client_secret", clientSecret),
+                new KeyValuePair<string, string>("client_id", _settings.ClientId),
+                new KeyValuePair<string, string>("client_secret", _settings.ClientSecret),
                 new KeyValuePair<string, string>("code", code),
-                new KeyValuePair<string, string>("redirect_uri", redirectUri)                
+                new KeyValuePair<string, string>("redirect_uri", _settings.RedirectUri)                
             });
 
             try

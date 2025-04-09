@@ -1,7 +1,11 @@
+using test_login_02;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.Configure<BitrixSettings>(builder.Configuration.GetSection("Bitrix"));
 
 builder.Services.AddSession(
     options =>
