@@ -16,7 +16,7 @@ namespace test_login_03.Controllers
             _httpClientFactory = httpClientFactory; //Cliente http
             //_httpClient.BaseAddress = new Uri("https://dragonball-api.com/api"); //URL de la API
         }
-
+        //Comentario de prueba
 
         [HttpGet]
         public async Task<ActionResult> Index()
