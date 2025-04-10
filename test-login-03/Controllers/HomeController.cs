@@ -13,10 +13,9 @@ namespace test_login_03.Controllers
 
         public HomeController(IHttpClientFactory httpClientFactory)
         {
-            _httpClientFactory = httpClientFactory; //Cliente http
-            //_httpClient.BaseAddress = new Uri("https://dragonball-api.com/api"); //URL de la API
+            _httpClientFactory = httpClientFactory; // Cliente http
+            //_httpClient.BaseAddress = new Uri("https://dragonball-api.com/api"); // URL de la API
         }
-        //Comentario de prueba. Volviendo a mandar
 
         [HttpGet]
         public async Task<ActionResult> Index()
@@ -43,7 +42,6 @@ namespace test_login_03.Controllers
                 else
                 {
                     return View("Error", new ErrorViewModel { RequestId = "Error al acceder a la API" });
-                    //return View(model: null);
                 }
             }
             catch (Exception ex)
