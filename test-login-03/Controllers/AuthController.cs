@@ -24,9 +24,11 @@ namespace test_login_03.Controllers
       _settings = settings.Value;
     }
 
-    public IActionResult Authorize()
+    public IActionResult Authorize(IHttpClientFactory httpClientFactory)
     {
-
+      // Aquí puedes implementar la lógica de autorización
+      // Por ejemplo, redirigir al usuario a la página de inicio de sesión de GitHub
+      return RedirectToAction("LoginWithGitHub");
     }
 
     [Route("github/login")]
