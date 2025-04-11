@@ -22,13 +22,14 @@ namespace test_login_02.Controllers
             _settings = settings.Value;
         }
 
-        //public IActionResult Install()
-        //{
-        //    ViewBag.Message = "Aplicación instalada correctamente"; //Mensaje de instalación
-        //    return View(); //Retorno de la vista
-        //}
+    //public IActionResult Install()
+    //{
+    //    ViewBag.Message = "Aplicación instalada correctamente"; //Mensaje de instalación
+    //    return View(); //Retorno de la vista
+    //}
 
-        public IActionResult Authorize()
+    // Método para redirigir a la URL de autorización
+    public IActionResult Authorize()
         {
             string authorizationUrl = $"https://corsusaint.bitrix24.com/oauth/authorize/?client_id={_settings.ClientId}&response_type=code&redirect_uri={_settings.RedirectUri}"; //URL de autorización
             return Redirect(authorizationUrl); //Redirigir a la URL de autorización

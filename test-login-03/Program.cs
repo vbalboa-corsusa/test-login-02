@@ -1,9 +1,15 @@
+using test_login_03;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Add configuration settings
+builder.Services.Configure<DragonballSettings>(builder.Configuration.GetSection("Dragonball"));
+
 builder.Services.AddHttpClient();
+builder.Services.AddSession();
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
@@ -23,6 +29,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseSession();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -40,6 +48,8 @@ app.Use(async (context, next) =>
     context.Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     await next();
 });
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
