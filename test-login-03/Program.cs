@@ -1,4 +1,5 @@
 using test_login_03;
+using test_login_03.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ builder.Services.AddControllersWithViews();
 // Add configuration settings
 builder.Services.Configure<DragonballSettings>(builder.Configuration.GetSection("Dragonball"));
 
+// Add HttpClientFactory
 builder.Services.AddHttpClient();
 builder.Services.AddSession();
 
