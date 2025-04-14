@@ -1,4 +1,4 @@
-﻿namespace test_login_02
+﻿namespace test_bitrix24_api
 {
     public class BitrixSettings
     {

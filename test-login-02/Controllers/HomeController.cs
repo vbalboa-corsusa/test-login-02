@@ -1,12 +1,12 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using test_login_02.Models;
+using test_bitrix24_api.Models;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Authorization; //consulta, analisis y manipulacion de datos JSON. LINQ(Idioma Consulta Integrada)
 
-namespace test_login_02.Controllers
+namespace test_bitrix24_api.Controllers
 {
     public class HomeController : Controller
     {

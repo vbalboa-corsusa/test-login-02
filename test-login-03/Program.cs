@@ -1,5 +1,5 @@
-using test_login_03;
-using test_login_03.Models;
+using test_dragonball_api;
+using test_dragonball_api.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Add configuration settings
-builder.Services.Configure<test_login_03.Models.DragonballSettings>(builder.Configuration.GetSection("Dragonball"));
+builder.Services.Configure<test_dragonball_api.Models.DragonballSettings>(builder.Configuration.GetSection("Dragonball"));
 
 builder.Services.AddHttpClient();
 builder.Services.AddSession();

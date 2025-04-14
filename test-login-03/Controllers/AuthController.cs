@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using System.Text.Json;
-using test_login_03.Models;
+using test_dragonball_api.Models;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
 
-namespace test_login_03.Controllers
+namespace test_dragonball_api.Controllers
 {
     public class AuthController : Controller
     {

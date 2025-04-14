@@ -1,11 +1,11 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using test_login_03.Models;
+using test_dragonball_api.Models;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
 
-namespace test_login_03.Controllers
+namespace test_dragonball_api.Controllers
 {
     public class HomeController : Controller
     {

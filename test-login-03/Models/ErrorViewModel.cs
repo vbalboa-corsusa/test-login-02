@@ -1,4 +1,4 @@
-namespace test_login_03.Models
+namespace test_dragonball_api.Models
 {
     public class ErrorViewModel
     {
