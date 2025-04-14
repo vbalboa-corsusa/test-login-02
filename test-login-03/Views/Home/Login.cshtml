@@ -1,42 +1,71 @@
-﻿@{
-  ViewData["Title"] = "Home Page";
+﻿@* @{ *@
+@*   ViewData["Title"] = "Login Page"; *@
+@* } *@
+
+@* <html> *@
+@* <head> *@
+@*   <title>Login</title> *@
+@*   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> *@
+@*   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> *@
+@*   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> *@
+@*   <link href="~/css/site.css" rel="stylesheet" /> *@
+@* </head> *@
+@* <body> *@
+@*   <div class="wrapper fadeInDown"> *@
+@*     <h2>Inicio de sesión con GitHub</h2> *@
+@*     <div id="formContent"> *@
+@*       <!-- Tabs Titles --> *@
+@*       <!-- Login Form --> *@
+@*       <a href="@Url.Action("Authorize", "OAuth")" class="btn btn-primary">Ingresar con GitHub</a> *@
+
+@*       @if (ViewBag.Message != null) *@
+@*       { *@
+@*         <div class="alert alert-success mt-3"> *@
+@*           @ViewBag.Message *@
+@*         </div> *@
+@*       } *@
+
+@*     </div> *@
+@*   </div> *@
+@* </body> *@
+
+@* </html> *@
+
+@{
+  ViewData["Title"] = "Login";
 }
 
-<html>
-<head>
-  <title>Login</title>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <link href="~/css/site.css" rel="stylesheet" />
-</head>
-<body>
-  <div class="wrapper fadeInDown">
-    <h2>Inicio de sesión con GitHub</h2>
-    <div id="formContent">
-      <!-- Tabs Titles -->
-      <!-- Login Form -->
-      <a href="@Url.Action("Authorize", "OAuth")" class="btn btn-primary">Ingresar con GitHub</a>
-
-
-      @* <form method="post" action="@Url.Action("Login","Home")"> *@
-      @*     <label for="EMAIL">Ingrese su correo:</label> *@
-      @*     <input type="email" id="email" class="form-control" name="email" placeholder="Ejemplo: pvercel@corsusa.com" required> *@
-      @*     <label for="password">Ingrese su contraseña:</label> *@
-      @*     <input type="password" id="password" class="form-control" name="password" required> *@
-      @*     <input type="submit" class="form-control" value="Log In"> *@
-      @*     <button type="submit" class="btn btn-primary">Ingresar</button> *@
-      @* </form> *@
-
-      @if (ViewBag.Message != null)
-      {
-        <div class="alert alert-success mt-3">
-          @ViewBag.Message
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="text-center">Inicio Sesión</h3>
         </div>
-      }
-
+        <div class="card-body">
+          <div class="text-center">
+            <a href="@Url.Action("LoginWithGitHub", "Auth")" class="btn btn-dark">
+              <i class="fab fa-github"></i> Iniciar Sesión con GitHub
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</body>
+</div>
 
-</html>
+<style>
+  .card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .btn-dark {
+    background-color: #24292e;
+    border-color: #24292e;
+  }
+
+    .btn-dark:hover {
+      background-color: #1b1f23;
+      border-color: #1b1f23;
+    }
+</style>
