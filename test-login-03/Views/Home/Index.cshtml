@@ -1,110 +1,78 @@
 ﻿@{
-  ViewData["Title"] = "Home Page";
-  var userName = Context.Session.GetString("UserName");
-  var userAvatar = Context.Session.GetString("UserAvatar");
+    ViewData["Title"] = "Inicio";
 }
 
-<html>
-<head>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <link href="~/css/site.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
-  <!------ Include the above in your HEAD tag ---------->
-</head>
-<body>
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">Dragon Ball</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-              <img src="@userAvatar" alt="@userName" class="rounded-circle" style="width: 30px; height: 30px;">
-              @userName
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" href="@Url.Action("Logout", "Auth")">
-                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-              </a>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <img src="https://www.bitrix24.com/images/logo.svg" alt="Bitrix24" style="height: 40px;">
+                    </div>
+                    
+                    <h4 class="text-center mb-4">Iniciar sesión en Bitrix24</h4>
+                    
+                    <form method="post" action="@Url.Action("Login", "Auth")">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="remember">
+                            <label class="form-check-label" for="remember">Recordarme</label>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                        </div>
+                    </form>
+                    
+                    <div class="text-center mt-3">
+                        <a href="#" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <p class="text-muted">O inicia sesión con</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="#" class="btn btn-outline-secondary">
+                                <i class="bi bi-google"></i> Google
+                            </a>
+                            <a href="#" class="btn btn-outline-secondary">
+                                <i class="bi bi-facebook"></i> Facebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </li>
-        </ul>
-      </div>
+            
+            <div class="text-center mt-3">
+                <p class="text-muted">¿No tienes una cuenta? <a href="#" class="text-decoration-none">Regístrate</a></p>
+            </div>
+        </div>
     </div>
-  </nav>
+</div>
 
-  <!-- Team -->
-  <section id="team" class="pb-5">
-    <div class="container">
-      <h5 class="section-title h1">Guerreros Z</h5>
-      <div class="row">
-      <!-- Team member -->
-      @if (Model != null)
-      {
-        foreach (var character in Model)
-        {
-          <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="image-flip">
-              <div class="mainflip flip-0">
-                <div class="frontside">
-                  <div class="card">
-                    <div class="card-body text-center">
-                      <p><img class="img-fluid" src="@character["image"]" alt="@character["name"]"></p>
-                      <h4 class="card-title">@character["name"]</h4>
-                      <p class="card-text">@character["race"]</p>
-                      <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="backside">
-                  <div class="card">
-                    <div class="card-body text-center mt-4">
-                      <h4 class="card-title">Descripción</h4>
-                      <p class="card-text">@character["description"]</p>
-                      <ul class="list-inline">
-                        <li class="list-inline-item">
-                          <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                            <i class="fa fa-facebook"></i>
-                          </a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                            <i class="fa fa-twitter"></i>
-                          </a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                            <i class="fa fa-skype"></i>
-                          </a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                            <i class="fa fa-google"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- ./Team member -->
-        }
-      }
-      else
-      {
-        <div class="alert alert-danger">Intente más tarde</div>
-       }
-      </div>
-    </div>
-  </section>
-  <!-- Team --> 
-</body>
-</html>
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .card {
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .btn-primary {
+        background-color: #2fc6f6;
+        border-color: #2fc6f6;
+    }
+    .btn-primary:hover {
+        background-color: #2ab7e3;
+        border-color: #2ab7e3;
+    }
+</style>

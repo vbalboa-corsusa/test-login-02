@@ -20,23 +20,19 @@ namespace test_dragonball_api.Controllers
             _settings = settings.Value;
         }
 
-        public IActionResult Authorize()
+        [HttpPost]
+        public IActionResult Login(string email, string password)
         {
-            return RedirectToAction("LoginWithGitHub");
-        }
-
-        [Route("github/login")]
-        public IActionResult LoginWithGitHub()
-        {
+            // Redirigir a la autenticación de Bitrix24
             var clientId = _settings.ClientId;
             var redirectUri = _settings.RedirectUri;
-            var oauthUrl = $"https://github.com/login/oauth/authorize?client_id={clientId}&redirect_uri={Uri.EscapeDataString(redirectUri)}&scope=read:user%20user:email";
+            var oauthUrl = $"https://www.bitrix24.net/oauth/authorize/?user_lang=en&client_id={clientId}&redirect_uri={Uri.EscapeDataString(redirectUri)}&scope=auth,profile&response_type=code&mode=page";
 
             return Redirect(oauthUrl);
         }
 
-        [HttpGet("github/callback")]
-        public async Task<IActionResult> GitHubCallBack(string code)
+        [HttpGet("oauth/callback")]
+        public async Task<IActionResult> Callback(string code)
         {
             if (string.IsNullOrEmpty(code))
                 return BadRequest("Authorization code is missing.");
@@ -52,7 +48,8 @@ namespace test_dragonball_api.Controllers
             };
 
             var requestContent = new FormUrlEncodedContent(body);
-            var tokenRequest = new HttpRequestMessage(HttpMethod.Post, "https://github.com/login/oauth/access_token");
+            var tokenRequest = new HttpRequestMessage(HttpMethod.Post, "https://oauth.bitrix24.com/oauth/token/");
+            tokenRequest.Content = requestContent;
 
             var tokenResponse = await client.SendAsync(tokenRequest);
             var tokenContent = await tokenResponse.Content.ReadAsStringAsync();
@@ -62,22 +59,26 @@ namespace test_dragonball_api.Controllers
             if (string.IsNullOrEmpty(accessToken))
                 return BadRequest("Failed to get access token.");
 
-            var userRequest = new HttpRequestMessage(HttpMethod.Get, "https://api.github.com/user");
+            // Guardar el token en la sesión
+            HttpContext.Session.SetString("AccessToken", accessToken);
+
+            // Obtener información del usuario
+            var userRequest = new HttpRequestMessage(HttpMethod.Get, "https://www.bitrix24.com/rest/user.current.json");
             userRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-            userRequest.Headers.UserAgent.ParseAdd("DragonballApp");
 
             var userResponse = await client.SendAsync(userRequest);
             var userJson = JObject.Parse(await userResponse.Content.ReadAsStringAsync());
 
-            HttpContext.Session.SetString("UserName", userJson["login"]?.ToString());
+            HttpContext.Session.SetString("UserEmail", userJson["result"]?["EMAIL"]?.ToString());
+            HttpContext.Session.SetString("UserName", userJson["result"]?["NAME"]?.ToString());
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Dashboard");
         }
 
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Login");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
