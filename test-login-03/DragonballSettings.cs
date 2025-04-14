@@ -1,4 +1,4 @@
-﻿namespace test_login_03
+﻿namespace test_dragonball_api
 {
   public class DragonballSettings
   {

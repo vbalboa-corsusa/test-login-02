@@ -1,4 +1,4 @@
-using test_login_02;
+using test_bitrix24_api;
 
 var builder = WebApplication.CreateBuilder(args);
 

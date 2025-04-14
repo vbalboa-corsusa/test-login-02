@@ -1,5 +1,5 @@
-using test_login_03;
-using test_login_03.Models;
+using test_dragonball_api;
+using test_dragonball_api.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,9 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Add configuration settings
-builder.Services.Configure<DragonballSettings>(builder.Configuration.GetSection("Dragonball"));
+builder.Services.Configure<test_dragonball_api.Models.DragonballSettings>(builder.Configuration.GetSection("Dragonball"));
 
-// Add HttpClientFactory
 builder.Services.AddHttpClient();
 builder.Services.AddSession();
 
@@ -30,6 +29,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthorization();
 
 app.UseSession();
 
@@ -57,5 +58,16 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+//app.MapControllerRoute(
+//    name: "github",
+//    pattern: "github/callback",
+//    defaults: new { controller = "Auth", action = "Callback" });
+
+//// Configurar el puerto 4545
+//var port = 4545;
+//app.Urls.Clear();
+//app.Urls.Add($"http://localhost:{port}");
+//Console.WriteLine($"La aplicación está corriendo en: http://localhost:{port}");
 
 app.Run();

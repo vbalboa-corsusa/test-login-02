@@ -1,9 +1,9 @@
-﻿namespace test_bitrix24_api
+namespace test_login_03.Models
 {
-    public class BitrixSettings
+    public class DragonballSettings
     {
         public string ClientId { get; set; }
         public string ClientSecret { get; set; }
         public string RedirectUri { get; set; }
     }
-}
+} 

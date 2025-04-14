@@ -1,4 +1,4 @@
-namespace test_login_02.Models
+namespace test_bitrix24_api.Models
 {
     public class ErrorViewModel
     {

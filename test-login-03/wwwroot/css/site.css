@@ -128,3 +128,18 @@ section {
             height: 120px;
             border-radius: 50%;
         }
+
+/* Login styles */
+.login-card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.github-btn {
+    background-color: #24292e;
+    border-color: #24292e;
+}
+
+.github-btn:hover {
+    background-color: #1b1f23;
+    border-color: #1b1f23;
+}

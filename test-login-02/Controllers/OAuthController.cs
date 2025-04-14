@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using Microsoft.Extensions.Options;
 
-namespace test_login_02.Controllers
+namespace test_bitrix24_api.Controllers
 {
     public class OAuthController : Controller
     {

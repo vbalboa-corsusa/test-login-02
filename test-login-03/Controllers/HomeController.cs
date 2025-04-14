@@ -1,11 +1,11 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using test_login_03.Models;
+using test_dragonball_api.Models;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
 
-namespace test_login_03.Controllers
+namespace test_dragonball_api.Controllers
 {
     public class HomeController : Controller
     {
@@ -50,6 +50,17 @@ namespace test_login_03.Controllers
                 ViewBag.ErrorMessage = "Error al acceder a la API: " + ex.Message;
                 return View();
             }
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
