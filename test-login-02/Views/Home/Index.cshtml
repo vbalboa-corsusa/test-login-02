@@ -19,16 +19,6 @@
             <!-- Login Form -->
             <a href="@Url.Action("Authorize", "OAuth")" class="btn btn-primary">Ingresar con Bitrix</a>
 
-
-            @* <form method="post" action="@Url.Action("Login","Home")"> *@
-            @*     <label for="EMAIL">Ingrese su correo:</label> *@
-            @*     <input type="email" id="email" class="form-control" name="email" placeholder="Ejemplo: pvercel@corsusa.com" required> *@
-            @*     <label for="password">Ingrese su contraseña:</label> *@
-            @*     <input type="password" id="password" class="form-control" name="password" required> *@
-            @*     <input type="submit" class="form-control" value="Log In"> *@
-            @*     <button type="submit" class="btn btn-primary">Ingresar</button> *@
-            @* </form> *@
-
             @if (ViewBag.Message != null)
             {
                 <div class="alert alert-success mt-3">
