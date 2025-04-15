@@ -145,7 +145,7 @@ section {
 }
 
 .sidebar {
-    min-height: 100vh;
+    min-height: 1vh;
     background-color: #343a40;
     color: white;
     padding-top: 20px;

@@ -285,3 +285,27 @@ input[type=text] {
 #icon {
     width: 60%;
 }
+
+/* Side bar */
+
+.sidebar {
+  min-height: 10vh;
+  background-color: #343a40;
+  color: white;
+  padding-top: 20px;
+}
+
+  .sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+  }
+
+    .sidebar a:hover {
+      background-color: #495057;
+    }
+
+  .sidebar .active {
+    background-color: #495057;
+  }
