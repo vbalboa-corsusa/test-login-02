@@ -143,3 +143,29 @@ section {
     background-color: #1b1f23;
     border-color: #1b1f23;
 }
+
+.sidebar {
+    min-height: 100vh;
+    background-color: #343a40;
+    color: white;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+.sidebar a:hover {
+    background-color: #495057;
+}
+
+.sidebar .active {
+    background-color: #495057;
+}
+
+.main-content {
+    padding: 20px;
+}
